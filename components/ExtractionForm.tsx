@@ -1,0 +1,133 @@
+"use client";
+
+import { useState } from "react";
+import { ExtractionWaste, WasteType } from "../types/waste";
+
+interface ExtractionFormProps {
+  onSubmit: (waste: Omit<ExtractionWaste, "id">) => void;
+}
+
+export default function ExtractionForm({ onSubmit }: ExtractionFormProps) {
+  const [formData, setFormData] = useState<Omit<ExtractionWaste, "id">>({
+    type: WasteType.OLIVE_PASTE,
+    quantity: 0,
+    sourceOlives: "",
+    productionDate: new Date(),
+    status: "READY",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+
+    if (name === "quantity") {
+      setFormData({ ...formData, quantity: parseFloat(value) || 0 });
+    } else if (name === "productionDate") {
+      setFormData({ ...formData, productionDate: new Date(value) });
+    } else if (name === "type") {
+      setFormData({ ...formData, type: value as WasteType });
+    } else if (name === "sourceOlives") {
+      setFormData({ ...formData, sourceOlives: value });
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    onSubmit(formData);
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <label
+            htmlFor="type"
+            className="block text-base font-semibold text-gray-700"
+          >
+            Type de déchet
+          </label>
+          <select
+            id="type"
+            name="type"
+            value={formData.type}
+            onChange={handleChange}
+            className="w-full text-base text-gray-700 border-gray-300 rounded-md shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-500 focus:ring-opacity-50"
+            required
+          >
+            <option value={WasteType.OLIVE_PASTE}>Pâte d'olive</option>
+            <option value={WasteType.RESIDUAL_WATER}>Eau résiduelle</option>
+            <option value={WasteType.PITS}>Noyaux</option>
+            <option value={WasteType.LEAVES}>Feuilles</option>
+            <option value={WasteType.OTHER}>Autre</option>
+          </select>
+        </div>
+
+        <div className="space-y-2">
+          <label
+            htmlFor="quantity"
+            className="block text-base font-semibold text-gray-700"
+          >
+            Quantité (kg)
+          </label>
+          <input
+            type="number"
+            id="quantity"
+            name="quantity"
+            value={formData.quantity}
+            onChange={handleChange}
+            min="0"
+            step="0.1"
+            className="w-full text-base text-gray-900 border-gray-300 rounded-md shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-500 focus:ring-opacity-50"
+            required
+          />
+        </div>
+
+        <div className="space-y-2">
+          <label
+            htmlFor="sourceOlives"
+            className="block text-base font-semibold text-gray-900"
+          >
+            Source des olives (ID du lot)
+          </label>
+          <input
+            type="text"
+            id="sourceOlives"
+            name="sourceOlives"
+            value={formData.sourceOlives}
+            onChange={handleChange}
+            className="w-full text-base text-gray-900 border-gray-300 rounded-md shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-500 focus:ring-opacity-50"
+            required
+          />
+        </div>
+
+        <div className="space-y-2">
+          <label
+            htmlFor="productionDate"
+            className="block text-base font-semibold text-gray-700"
+          >
+            Date de production
+          </label>
+          <input
+            type="date"
+            id="productionDate"
+            name="productionDate"
+            value={formData.productionDate.toISOString().split("T")[0]}
+            onChange={handleChange}
+            className="w-full text-base text-gray-900 border-gray-300 rounded-md shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-500 focus:ring-opacity-50"
+            required
+          />
+        </div>
+      </div>
+
+      <div className="flex justify-end">
+        <button
+          type="submit"
+          className="bg-yellow-600 text-white text-base font-semibold py-2 px-5 rounded hover:bg-yellow-700 transition-colors"
+        >
+          Enregistrer
+        </button>
+      </div>
+    </form>
+  );
+}
