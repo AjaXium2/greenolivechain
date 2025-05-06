@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-green-100 to-green-200 p-6">
       <h1 className="text-4xl font-bold text-green-800 mb-8">
-        Gestion des Déchets d'Olive
+        Gestion des Déchets d'Olives
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">

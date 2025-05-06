@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useFarmerFormStore } from "../stores/useFarmerFormStore";
 import { FarmerWaste, WasteType } from "../types/waste";
 
 interface FarmerFormProps {
@@ -8,12 +8,7 @@ interface FarmerFormProps {
 }
 
 export default function FarmerForm({ onSubmit }: FarmerFormProps) {
-  const [formData, setFormData] = useState<Omit<FarmerWaste, "id">>({
-    type: WasteType.BRANCHES,
-    quantity: 0,
-    harvestDate: new Date(),
-    status: "READY",
-  });
+  const { formData, updateFormField, resetForm } = useFarmerFormStore();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -21,17 +16,18 @@ export default function FarmerForm({ onSubmit }: FarmerFormProps) {
     const { name, value } = e.target;
 
     if (name === "quantity") {
-      setFormData({ ...formData, quantity: parseFloat(value) || 0 });
+      updateFormField("quantity", parseFloat(value) || 0);
     } else if (name === "harvestDate") {
-      setFormData({ ...formData, harvestDate: new Date(value) });
+      updateFormField("harvestDate", new Date(value));
     } else if (name === "type") {
-      setFormData({ ...formData, type: value as WasteType });
+      updateFormField("type", value as WasteType);
     }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit(formData);
+    resetForm();
   };
 
   return (

@@ -1,49 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { FarmerWaste, WasteType } from "../types/waste";
+import { useFarmerStore } from "../stores/useFarmerStore";
 import FarmerForm from "../components/FarmerForm";
 
 export default function FarmerPage() {
-  const [wastes, setWastes] = useState<FarmerWaste[]>([
-    {
-      id: "waste-1",
-      type: WasteType.BRANCHES,
-      quantity: 50,
-      harvestDate: new Date(),
-      status: "READY",
-    },
-    {
-      id: "waste-2",
-      type: WasteType.LEAVES,
-      quantity: 30,
-      harvestDate: new Date(Date.now() - 86400000), // Hier
-      transferDate: new Date(),
-      status: "TRANSFERRED",
-    },
-  ]);
-
-  const [showForm, setShowForm] = useState(false);
-
-  const handleAddWaste = (newWaste: Omit<FarmerWaste, "id">) => {
-    const waste: FarmerWaste = {
-      ...newWaste,
-      id: `waste-${Date.now()}`,
-    };
-    setWastes([...wastes, waste]);
-    setShowForm(false);
-  };
-
-  const handleTransferWaste = (id: string) => {
-    setWastes(
-      wastes.map((waste) =>
-        waste.id === id
-          ? { ...waste, status: "TRANSFERRED", transferDate: new Date() }
-          : waste
-      )
-    );
-  };
+  const { wastes, showForm, toggleForm, addWaste, transferWaste } =
+    useFarmerStore();
 
   return (
     <main className="min-h-screen bg-green-50 p-6">
@@ -62,7 +25,7 @@ export default function FarmerPage() {
           </div>
 
           <button
-            onClick={() => setShowForm(!showForm)}
+            onClick={toggleForm}
             className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition-colors"
           >
             {showForm ? "Annuler" : "Ajouter des déchets"}
@@ -74,7 +37,7 @@ export default function FarmerPage() {
             <h2 className="text-xl font-semibold mb-4 text-gray-700">
               Déclarer des nouveaux déchets
             </h2>
-            <FarmerForm onSubmit={handleAddWaste} />
+            <FarmerForm onSubmit={addWaste} />
           </div>
         )}
 
@@ -125,7 +88,7 @@ export default function FarmerPage() {
                     <td className="p-4">
                       {waste.status === "READY" ? (
                         <button
-                          onClick={() => handleTransferWaste(waste.id)}
+                          onClick={() => transferWaste(waste.id)}
                           className="bg-blue-600 hover:bg-blue-700 text-white py-1 px-3 rounded-md text-xs shadow-sm transition-colors"
                         >
                           Transférer
