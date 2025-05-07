@@ -20,12 +20,7 @@ export default function Register() {
 
           <div>
             <button className="w-[320px] h-[50px] mx-auto flex justify-center items-center hover:bg-[#2a0678] bg-[#431c99] text-white py-2 px-4 rounded-lg cursor-pointer">
-              <img
-                src="/metamask-icon.svg"
-                alt="MetaMask Logo"
-                className="w-6 h-6 mr-2"
-              />
-              S'inscrire avec MetaMask
+              S'inscrire
             </button>
           </div>
 
