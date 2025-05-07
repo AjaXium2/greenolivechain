@@ -1,6 +1,4 @@
-"use client";
-
-import { useState } from "react";
+import useRecyclingFormStore from "../stores/useRecyclingFormStore";
 import { RecyclingProcess } from "../types/waste";
 
 interface RecyclingFormProps {
@@ -12,14 +10,7 @@ export default function RecyclingForm({
   onSubmit,
   onCancel,
 }: RecyclingFormProps) {
-  const [formData, setFormData] = useState<
-    Omit<RecyclingProcess, "id" | "wasteId">
-  >({
-    processType: "COMPOST",
-    startDate: new Date(),
-    status: "IN_PROGRESS",
-    notes: "",
-  });
+  const { formData, updateFormData, resetForm } = useRecyclingFormStore();
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -29,20 +20,21 @@ export default function RecyclingForm({
     const { name, value } = e.target;
 
     if (name === "startDate") {
-      setFormData({ ...formData, startDate: new Date(value) });
+      updateFormData(name, new Date(value));
     } else if (name === "processType") {
-      setFormData({
-        ...formData,
-        processType: value as "COMPOST" | "FUEL" | "FERTILIZER" | "OTHER",
-      });
+      updateFormData(
+        name,
+        value as "COMPOST" | "FUEL" | "FERTILIZER" | "OTHER"
+      );
     } else if (name === "notes") {
-      setFormData({ ...formData, notes: value });
+      updateFormData(name, value);
     }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit(formData);
+    resetForm();
   };
 
   return (

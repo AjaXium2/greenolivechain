@@ -1,6 +1,4 @@
-"use client";
-
-import { useState } from "react";
+import useExtractionFormStore from "../stores/useExtractionFormStore";
 import { ExtractionWaste, WasteType } from "../types/waste";
 
 interface ExtractionFormProps {
@@ -8,13 +6,7 @@ interface ExtractionFormProps {
 }
 
 export default function ExtractionForm({ onSubmit }: ExtractionFormProps) {
-  const [formData, setFormData] = useState<Omit<ExtractionWaste, "id">>({
-    type: WasteType.OLIVE_PASTE,
-    quantity: 0,
-    sourceOlives: "",
-    productionDate: new Date(),
-    status: "READY",
-  });
+  const { formData, updateFormData, resetForm } = useExtractionFormStore();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -22,19 +14,18 @@ export default function ExtractionForm({ onSubmit }: ExtractionFormProps) {
     const { name, value } = e.target;
 
     if (name === "quantity") {
-      setFormData({ ...formData, quantity: parseFloat(value) || 0 });
+      updateFormData(name, parseFloat(value) || 0);
     } else if (name === "productionDate") {
-      setFormData({ ...formData, productionDate: new Date(value) });
-    } else if (name === "type") {
-      setFormData({ ...formData, type: value as WasteType });
-    } else if (name === "sourceOlives") {
-      setFormData({ ...formData, sourceOlives: value });
+      updateFormData(name, new Date(value));
+    } else {
+      updateFormData(name, value);
     }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit(formData);
+    resetForm();
   };
 
   return (

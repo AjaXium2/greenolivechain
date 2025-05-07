@@ -1,5 +1,3 @@
-"use client";
-
 import { useFarmerFormStore } from "../stores/useFarmerFormStore";
 import { FarmerWaste, WasteType } from "../types/waste";
 

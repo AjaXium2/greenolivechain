@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { useFarmerStore } from "../stores/useFarmerStore";
 import FarmerForm from "../components/FarmerForm";

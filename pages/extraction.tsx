@@ -1,59 +1,10 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
-import { ExtractionWaste, WasteType } from "../types/waste";
+import useExtractionStore from "../stores/useExtractionStore";
 import ExtractionForm from "../components/ExtractionForm";
 
 export default function ExtractionPage() {
-  const [wastes, setWastes] = useState<ExtractionWaste[]>([
-    {
-      id: "extr-waste-1",
-      type: WasteType.OLIVE_PASTE,
-      quantity: 120,
-      sourceOlives: "batch-456",
-      productionDate: new Date(),
-      status: "READY",
-    },
-    {
-      id: "extr-waste-2",
-      type: WasteType.RESIDUAL_WATER,
-      quantity: 200,
-      sourceOlives: "batch-456",
-      productionDate: new Date(),
-      status: "READY",
-    },
-    {
-      id: "extr-waste-3",
-      type: WasteType.PITS,
-      quantity: 80,
-      sourceOlives: "batch-455",
-      productionDate: new Date(Date.now() - 172800000), // Il y a 2 jours
-      transferDate: new Date(Date.now() - 86400000), // Hier
-      status: "TRANSFERRED",
-    },
-  ]);
-
-  const [showForm, setShowForm] = useState(false);
-
-  const handleAddWaste = (newWaste: Omit<ExtractionWaste, "id">) => {
-    const waste: ExtractionWaste = {
-      ...newWaste,
-      id: `extr-waste-${Date.now()}`,
-    };
-    setWastes([...wastes, waste]);
-    setShowForm(false);
-  };
-
-  const handleTransferWaste = (id: string) => {
-    setWastes(
-      wastes.map((waste) =>
-        waste.id === id
-          ? { ...waste, status: "TRANSFERRED", transferDate: new Date() }
-          : waste
-      )
-    );
-  };
+  const { wastes, showForm, handleAddWaste, handleTransferWaste, toggleForm } =
+    useExtractionStore();
 
   return (
     <main className="min-h-screen bg-yellow-50 p-6">
@@ -72,7 +23,7 @@ export default function ExtractionPage() {
           </div>
 
           <button
-            onClick={() => setShowForm(!showForm)}
+            onClick={toggleForm}
             className="bg-yellow-600 text-white py-2 px-4 rounded hover:bg-yellow-700 transition-colors"
           >
             {showForm ? "Annuler" : "Ajouter des déchets"}
@@ -89,7 +40,7 @@ export default function ExtractionPage() {
         )}
 
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
-          <h2 className="text-xl font-semibold p-4 bg-yellow-100 text-gray-500 text-gray-700">
+          <h2 className="text-xl font-semibold p-4 bg-yellow-100 text-gray-500 hover:text-gray-700">
             Déchets d'extraction
           </h2>
 

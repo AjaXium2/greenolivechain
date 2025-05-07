@@ -1,109 +1,20 @@
-// src/app/(organizations)/recycling/page.tsx
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
-import { RecyclingProcess, WasteRecord, WasteType } from "../types/waste";
+import useRecyclingStore from "../stores/useRecyclingStore";
 import RecyclingForm from "../components/RecyclingForm";
 
 export default function RecyclingPage() {
-  const [wasteRecords, setWasteRecords] = useState<WasteRecord[]>([
-    {
-      id: "record-1",
-      type: WasteType.BRANCHES,
-      quantity: 50,
-      sourceOrganization: "Ferme des Oliviers",
-      destinationOrganization: "ÉcoRecycle",
-      createdAt: new Date(Date.now() - 86400000), // Hier
-      status: "TRANSFERRED",
-    },
-    {
-      id: "record-2",
-      type: WasteType.OLIVE_PASTE,
-      quantity: 120,
-      sourceOrganization: "PressOlive",
-      destinationOrganization: "ÉcoRecycle",
-      createdAt: new Date(),
-      status: "PENDING",
-    },
-    {
-      id: "record-3",
-      type: WasteType.PITS,
-      quantity: 80,
-      sourceOrganization: "PressOlive",
-      destinationOrganization: "ÉcoRecycle",
-      createdAt: new Date(Date.now() - 172800000), // Il y a 2 jours
-      status: "PROCESSED",
-    },
-  ]);
-
-  const [processes, setProcesses] = useState<RecyclingProcess[]>([
-    {
-      id: "process-1",
-      wasteId: "record-3",
-      processType: "FUEL",
-      startDate: new Date(Date.now() - 86400000), // Hier
-      endDate: new Date(),
-      outputQuantity: 70,
-      status: "COMPLETED",
-      notes: "Conversion en combustible pour les usines",
-    },
-  ]);
-
-  const [showForm, setShowForm] = useState(false);
-  const [selectedWaste, setSelectedWaste] = useState<WasteRecord | null>(null);
-
-  const handleReceiveWaste = (id: string) => {
-    setWasteRecords(
-      wasteRecords.map((record) =>
-        record.id === id ? { ...record, status: "TRANSFERRED" } : record
-      )
-    );
-  };
-
-  const handleStartProcess = (wasteId: string) => {
-    const waste = wasteRecords.find((w) => w.id === wasteId);
-    if (waste) {
-      setSelectedWaste(waste);
-      setShowForm(true);
-    }
-  };
-
-  const handleAddProcess = (
-    newProcess: Omit<RecyclingProcess, "id" | "wasteId">
-  ) => {
-    if (selectedWaste) {
-      // Créer le nouveau processus
-      const process: RecyclingProcess = {
-        ...newProcess,
-        id: `process-${Date.now()}`,
-        wasteId: selectedWaste.id,
-      };
-      setProcesses([...processes, process]);
-
-      // Mettre à jour le statut du déchet
-      setWasteRecords(
-        wasteRecords.map((record) =>
-          record.id === selectedWaste.id
-            ? { ...record, status: "PROCESSED" }
-            : record
-        )
-      );
-
-      setShowForm(false);
-      setSelectedWaste(null);
-    }
-  };
-
-  const completeProcess = (id: string) => {
-    setProcesses(
-      processes.map((process) =>
-        process.id === id
-          ? { ...process, status: "COMPLETED", endDate: new Date() }
-          : process
-      )
-    );
-  };
+  const {
+    wasteRecords,
+    processes,
+    showForm,
+    selectedWaste,
+    handleReceiveWaste,
+    handleStartProcess,
+    handleAddProcess,
+    completeProcess,
+    toggleForm,
+    setSelectedWaste,
+  } = useRecyclingStore();
 
   return (
     <main className="min-h-screen bg-blue-50 p-6">
@@ -134,7 +45,7 @@ export default function RecyclingPage() {
             <RecyclingForm
               onSubmit={handleAddProcess}
               onCancel={() => {
-                setShowForm(false);
+                toggleForm(false);
                 setSelectedWaste(null);
               }}
             />
