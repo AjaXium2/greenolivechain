@@ -1,12 +1,12 @@
-import { useFarmerFormStore } from "../stores/useFarmerFormStore";
+import { useOlivesDashFormStore } from "../stores/useOlivesDashFormStore";
 import { FarmerWaste, WasteType } from "../types/waste";
 
-interface FarmerFormProps {
+interface OlivesDashProps {
   onSubmit: (waste: Omit<FarmerWaste, "id">) => void;
 }
 
-export default function FarmerForm({ onSubmit }: FarmerFormProps) {
-  const { formData, updateFormField, resetForm } = useFarmerFormStore();
+export default function OlivesDash({ onSubmit }: OlivesDashProps) {
+  const { formData, updateFormField, resetForm } = useOlivesDashFormStore();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>

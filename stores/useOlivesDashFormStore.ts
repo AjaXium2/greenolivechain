@@ -1,13 +1,13 @@
 import { create } from "zustand";
 import { FarmerWaste, WasteType } from "../types/waste";
 
-interface FarmerFormState {
+interface OlivesDashFormState {
   formData: Omit<FarmerWaste, "id">;
   updateFormField: (field: keyof Omit<FarmerWaste, "id">, value: any) => void;
   resetForm: () => void;
 }
 
-export const useFarmerFormStore = create<FarmerFormState>((set) => ({
+export const useOlivesDashFormStore = create<OlivesDashFormState>((set) => ({
   formData: {
     type: WasteType.BRANCHES,
     quantity: 0,

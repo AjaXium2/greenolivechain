@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { FarmerWaste, WasteType } from "../types/waste";
 
-interface FarmerStore {
+interface OlivesDashStore {
   wastes: FarmerWaste[];
   showForm: boolean;
   toggleForm: () => void;
@@ -9,7 +9,7 @@ interface FarmerStore {
   transferWaste: (id: string) => void;
 }
 
-export const useFarmerStore = create<FarmerStore>((set) => ({
+export const useOlivesDashStore = create<OlivesDashStore>((set) => ({
   wastes: [
     {
       id: "waste-1",

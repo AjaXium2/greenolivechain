@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { useFarmerStore } from "../stores/useFarmerStore";
-import FarmerForm from "../components/FarmerForm";
+import { useOlivesDashStore } from "../../stores/useOlivesStore";
+import FarmerForm from "../../components/OlivesDashForm";
 
 export default function FarmerPage() {
   const { wastes, showForm, toggleForm, addWaste, transferWaste } =
-    useFarmerStore();
+    useOlivesDashStore();
 
   return (
     <main className="min-h-screen bg-green-50 p-6">

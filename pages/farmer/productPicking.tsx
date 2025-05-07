@@ -4,29 +4,22 @@ export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-green-100 to-green-200 p-6">
       <h1 className="text-4xl font-bold text-green-800 mb-8">
-        Gestion des Déchets d'Olives
+        Gestion des Produits des Plantes d'Olives
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl justify-center items-center">
         <OrganizationCard
-          title="Agriculteur"
-          description="Gestion des déchets agricoles issus de la culture des olives"
-          href="./farmer/productPicking"
-          icon="🌱"
+          title="Olives"
+          description="Traitement des olives"
+          href="olivesDash"
+          icon="🫒"
         />
 
         <OrganizationCard
-          title="Extraction d'Huile"
-          description="Suivi des déchets générés lors de l'extraction de l'huile d'olive"
-          href="./extraction"
-          icon="🏭"
-        />
-
-        <OrganizationCard
-          title="Organisation de Recyclage"
-          description="Transformation des déchets en ressources valorisables"
-          href="./recycling"
-          icon="♻️"
+          title="Déchets"
+          description="Traitement des déchets, feuilles et branches"
+          href="wasteDash"
+          icon="🎋"
         />
       </div>
     </main>
