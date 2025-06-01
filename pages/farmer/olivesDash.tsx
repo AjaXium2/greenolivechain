@@ -26,14 +26,14 @@ export default function FarmerPage() {
             onClick={toggleForm}
             className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition-colors"
           >
-            {showForm ? "Annuler" : "Ajouter des déchets"}
+            {showForm ? "Annuler" : "Ajouter des olives"}
           </button>
         </div>
 
         {showForm && (
           <div className="bg-white p-6 rounded-lg shadow-md mb-8">
             <h2 className="text-xl font-semibold mb-4 text-gray-700">
-              Déclarer des nouveaux déchets
+              Déclarer des nouveaux olives
             </h2>
             <FarmerForm onSubmit={addWaste} />
           </div>
@@ -41,16 +41,16 @@ export default function FarmerPage() {
 
         <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
           <h2 className="text-xl font-semibold p-4 bg-green-100 text-gray-700">
-            Déchets agricoles
+            Olives récoltées
           </h2>
 
           {wastes.length === 0 ? (
-            <p className="p-4 text-gray-500">Aucun déchet enregistré</p>
+            <p className="p-4 text-gray-500">Aucune olive enregistrée</p>
           ) : (
             <table className="w-full text-sm text-gray-700">
               <thead className="bg-green-600 text-white text-left">
                 <tr>
-                  <th className="p-4 font-semibold">Type</th>
+                  <th className="p-4 font-semibold">ID</th>
                   <th className="p-4 font-semibold">Quantité (kg)</th>
                   <th className="p-4 font-semibold">Date de récolte</th>
                   <th className="p-4 font-semibold">Statut</th>
