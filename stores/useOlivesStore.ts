@@ -13,16 +13,23 @@ export const useOlivesDashStore = create<OlivesDashStore>((set) => ({
   wastes: [
     {
       id: "waste-1",
-      type: WasteType.BRANCHES,
-      quantity: 50,
+      type: WasteType.OLIVES,
+      quantity: 150,
       harvestDate: new Date(),
       status: "READY",
     },
     {
       id: "waste-2",
-      type: WasteType.LEAVES,
-      quantity: 30,
-      harvestDate: new Date(Date.now() - 86400000),
+      type: WasteType.OLIVES,
+      quantity: 200,
+      harvestDate: new Date(Date.now() - 86400000), // 1 day ago
+      status: "READY",
+    },
+    {
+      id: "waste-3",
+      type: WasteType.OLIVES,
+      quantity: 120,
+      harvestDate: new Date(Date.now() - 172800000), // 2 days ago
       transferDate: new Date(),
       status: "TRANSFERRED",
     },

@@ -9,7 +9,7 @@ interface OlivesDashFormState {
 
 export const useOlivesDashFormStore = create<OlivesDashFormState>((set) => ({
   formData: {
-    type: WasteType.BRANCHES,
+    type: WasteType.OLIVES,
     quantity: 0,
     harvestDate: new Date(),
     status: "READY",
@@ -24,7 +24,7 @@ export const useOlivesDashFormStore = create<OlivesDashFormState>((set) => ({
   resetForm: () =>
     set(() => ({
       formData: {
-        type: WasteType.BRANCHES,
+        type: WasteType.OLIVES,
         quantity: 0,
         harvestDate: new Date(),
         status: "READY",

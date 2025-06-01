@@ -1,16 +1,15 @@
 import { useOlivesDashFormStore } from "../stores/useOlivesDashFormStore";
-import { FarmerWaste, WasteType } from "../types/waste";
 
 interface OlivesDashProps {
-  onSubmit: (waste: Omit<FarmerWaste, "id">) => void;
+  onSubmit: (formData: any) => void;
 }
 
 export default function OlivesDash({ onSubmit }: OlivesDashProps) {
   const { formData, updateFormField, resetForm } = useOlivesDashFormStore();
+  interface FormChangeEvent
+    extends React.ChangeEvent<HTMLInputElement | HTMLSelectElement> {}
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  const handleChange = (e: FormChangeEvent): void => {
     const { name, value } = e.target;
 
     if (name === "quantity") {
@@ -18,11 +17,11 @@ export default function OlivesDash({ onSubmit }: OlivesDashProps) {
     } else if (name === "harvestDate") {
       updateFormField("harvestDate", new Date(value));
     } else if (name === "type") {
-      updateFormField("type", value as WasteType);
+      updateFormField("type", value);
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     onSubmit(formData);
     resetForm();
@@ -31,25 +30,6 @@ export default function OlivesDash({ onSubmit }: OlivesDashProps) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <label
-            htmlFor="type"
-            className="block text-sm font-medium text-gray-500"
-          >
-            Type de déchet
-          </label>
-          <select
-            id="type"
-            name="type"
-            value={formData.type}
-            onChange={handleChange}
-            className="w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50 text-gray-700"
-            required
-          >
-            <option>Olives</option>
-          </select>
-        </div>
-
         <div className="space-y-2">
           <label
             htmlFor="quantity"

@@ -1,6 +1,7 @@
 // src/types/waste.ts
 
 export enum WasteType {
+  OLIVES = "Olives",
   BRANCHES = "Branches",
   LEAVES = "Feuilles",
   OLIVE_PASTE = "Pâte d'olive",
