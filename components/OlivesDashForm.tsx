@@ -46,9 +46,7 @@ export default function OlivesDash({ onSubmit }: OlivesDashProps) {
             className="w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50 text-gray-700"
             required
           >
-            <option value={WasteType.BRANCHES}>Branches</option>
-            <option value={WasteType.LEAVES}>Feuilles</option>
-            <option value={WasteType.OTHER}>Autre</option>
+            <option>Olives</option>
           </select>
         </div>
 
