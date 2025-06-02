@@ -64,7 +64,7 @@ export default function FarmerPage() {
                     className="hover:bg-green-50 transition-colors"
                   >
                     <td className="p-4 capitalize">
-                      {waste.type.toLowerCase()}
+                      {waste.id}
                     </td>
                     <td className="p-4">{waste.quantity}</td>
                     <td className="p-4">
