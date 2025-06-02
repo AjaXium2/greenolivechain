@@ -6,14 +6,18 @@ export default function ExtractionPage() {
   const { wastes, showForm, handleAddWaste, handleTransferWaste, toggleForm } =
     useExtractionStore();
 
+  // Données factices pour le portefeuille
+  const walletBalance = 1845; // MAD
+
   return (
     <main className="min-h-screen bg-yellow-50 p-6">
       <div className="max-w-6xl mx-auto">
-        <div className="flex justify-between items-center mb-8">
+        {/* En-tête avec portefeuille intégré */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
           <div>
             <Link
               href="/"
-              className="text-yellow-700 hover:underline mb-4 inline-block"
+              className="text-yellow-700 hover:underline mb-2 inline-block"
             >
               &larr; Retour à l'accueil
             </Link>
@@ -22,12 +26,25 @@ export default function ExtractionPage() {
             </h1>
           </div>
 
-          <button
-            onClick={toggleForm}
-            className="bg-yellow-600 text-white py-2 px-4 rounded hover:bg-yellow-700 transition-colors"
-          >
-            {showForm ? "Annuler" : "Ajouter des déchets"}
-          </button>
+          <div className="flex flex-col md:flex-row items-end gap-4">
+            {/* Portefeuille des récompenses */}
+            <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white p-4 rounded-lg shadow-md min-w-[200px]">
+              <div className="flex justify-between items-center">
+                <div>
+                  <p className="text-yellow-100 text-sm">Récompenses</p>
+                  <p className="text-2xl font-bold">{walletBalance} MAD</p>
+                </div>
+                <span className="text-xl">💰</span>
+              </div>
+            </div>
+
+            <button
+              onClick={toggleForm}
+              className="bg-yellow-600 text-white py-2 px-4 rounded hover:bg-yellow-700 transition-colors"
+            >
+              {showForm ? "Annuler" : "Ajouter des déchets"}
+            </button>
+          </div>
         </div>
 
         {showForm && (
@@ -107,4 +124,4 @@ export default function ExtractionPage() {
       </div>
     </main>
   );
-}
+};
