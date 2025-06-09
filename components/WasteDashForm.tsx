@@ -5,7 +5,7 @@ interface OlivesDashProps {
   onSubmit: (waste: Omit<FarmerWaste, "id">) => void;
 }
 
-export default function OlivesDash({ onSubmit }: OlivesDashProps) {
+export default function WasteDashForm({ onSubmit }: OlivesDashProps) {
   const { formData, updateFormField, resetForm } = useOlivesDashFormStore();
 
   const handleChange = (

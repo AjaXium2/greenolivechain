@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useOlivesDashStore } from "../../stores/useOlivesStore";
 import FarmerForm from "../../components/OlivesDashForm";
+import WasteDashForm from "@/components/WasteDashForm";
 
 export default function FarmerPage() {
   const { wastes, showForm, toggleForm, addWaste, transferWaste } =
@@ -35,7 +36,7 @@ export default function FarmerPage() {
             <h2 className="text-xl font-semibold mb-4 text-gray-700">
               Déclarer des nouveaux déchets
             </h2>
-            <FarmerForm onSubmit={addWaste} />
+            <WasteDashForm onSubmit={addWaste} />
           </div>
         )}
 
