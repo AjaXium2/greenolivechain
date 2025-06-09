@@ -10,23 +10,7 @@ interface OlivesDashStore {
 }
 
 export const useOlivesDashStore = create<OlivesDashStore>((set) => ({
-  wastes: [
-    {
-      id: "waste-1",
-      type: WasteType.BRANCHES,
-      quantity: 50,
-      harvestDate: new Date(),
-      status: "READY",
-    },
-    {
-      id: "waste-2",
-      type: WasteType.LEAVES,
-      quantity: 30,
-      harvestDate: new Date(Date.now() - 86400000),
-      transferDate: new Date(),
-      status: "TRANSFERRED",
-    },
-  ],
+  wastes: [],
   showForm: false,
   toggleForm: () => set((state) => ({ showForm: !state.showForm })),
   addWaste: (newWaste) =>

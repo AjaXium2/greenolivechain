@@ -14,18 +14,18 @@ export default function Register() {
         </div>
 
         <div className="p-8">
-          <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
+          {" "}
+          <h1 className="text-2xl font-bold text-center text-black mb-6">
             Créer un compte
           </h1>
-
           <div>
             <button className="w-[320px] h-[50px] mx-auto flex justify-center items-center hover:bg-[#2a0678] bg-[#431c99] text-white py-2 px-4 rounded-lg cursor-pointer">
               S'inscrire
             </button>
           </div>
-
           <div className="mt-6 text-center">
-            <p className="text-sm text-gray-600">
+            {" "}
+            <p className="text-sm text-black">
               Vous avez déjà un compte?{" "}
               <Link
                 href="login"

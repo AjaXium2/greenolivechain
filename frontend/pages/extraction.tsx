@@ -6,14 +6,10 @@ export default function ExtractionPage() {
   const { wastes, showForm, handleAddWaste, handleTransferWaste, toggleForm } =
     useExtractionStore();
 
-  // Données factices pour le portefeuille
-  const walletBalance = 1845; // MAD
-
   return (
     <main className="min-h-screen bg-yellow-50 p-6">
       <div className="max-w-6xl mx-auto">
-        {/* En-tête avec portefeuille intégré */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+        <div className="flex justify-between items-center mb-8">
           <div>
             <Link
               href="/"
@@ -26,30 +22,17 @@ export default function ExtractionPage() {
             </h1>
           </div>
 
-          <div className="flex flex-col md:flex-row items-end gap-4">
-            {/* Portefeuille des récompenses */}
-            <div className="bg-gradient-to-r from-yellow-500 to-yellow-600 text-white p-4 rounded-lg shadow-md min-w-[200px]">
-              <div className="flex justify-between items-center">
-                <div>
-                  <p className="text-yellow-100 text-sm">Récompenses</p>
-                  <p className="text-2xl font-bold">{walletBalance} MAD</p>
-                </div>
-                <span className="text-xl">💰</span>
-              </div>
-            </div>
-
-            <button
-              onClick={toggleForm}
-              className="bg-yellow-600 text-white py-2 px-4 rounded hover:bg-yellow-700 transition-colors"
-            >
-              {showForm ? "Annuler" : "Ajouter des déchets"}
-            </button>
-          </div>
+          <button
+            onClick={toggleForm}
+            className="bg-yellow-600 text-white py-2 px-4 rounded hover:bg-yellow-700 transition-colors"
+          >
+            {showForm ? "Annuler" : "Ajouter des déchets"}
+          </button>
         </div>
 
         {showForm && (
           <div className="bg-white p-6 rounded-lg shadow-md mb-8">
-            <h2 className="text-xl font-semibold mb-4 text-gray-500">
+            <h2 className="text-xl font-semibold mb-4 text-black">
               Déclarer des nouveaux déchets d'extraction
             </h2>
             <ExtractionForm onSubmit={handleAddWaste} />
@@ -57,16 +40,16 @@ export default function ExtractionPage() {
         )}
 
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
-          <h2 className="text-xl font-semibold p-4 bg-yellow-100 text-gray-500 hover:text-gray-700">
+          <h2 className="text-xl font-semibold p-4 bg-yellow-100 text-black hover:text-gray-900">
             Déchets d'extraction
           </h2>
 
           {wastes.length === 0 ? (
-            <p className="p-4 text-gray-500">
+            <p className="p-4 text-black">
               Aucun déchet d'extraction enregistré
             </p>
           ) : (
-            <table className="w-full text-sm text-gray-700">
+            <table className="w-full text-sm text-black">
               <thead className="bg-yellow-50">
                 <tr>
                   <th className="p-4 text-left">Type</th>
@@ -107,9 +90,9 @@ export default function ExtractionPage() {
                         >
                           Transférer
                         </button>
-                      )}
+                      )}{" "}
                       {waste.status === "TRANSFERRED" && (
-                        <span className="text-gray-500 text-sm">
+                        <span className="text-black text-sm">
                           Transféré le{" "}
                           {waste.transferDate?.toLocaleDateString()}
                         </span>
@@ -124,4 +107,4 @@ export default function ExtractionPage() {
       </div>
     </main>
   );
-};
+}

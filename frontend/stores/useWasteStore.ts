@@ -19,11 +19,11 @@ export const useOlivesDashStore = create<OlivesDashStore>((set, get) => ({
   showForm: false,
   loading: false,
   error: null,
-  
+
   toggleForm: () => set((state) => ({ showForm: !state.showForm })),
-  
+
   clearError: () => set({ error: null }),
-  
+
   loadWastes: async () => {
     set({ loading: true, error: null });
     try {
@@ -35,15 +35,20 @@ export const useOlivesDashStore = create<OlivesDashStore>((set, get) => ({
           type: waste.type as WasteType,
           quantity: waste.quantity,
           harvestDate: new Date(waste.harvestDate),
-          transferDate: waste.transferDate ? new Date(waste.transferDate) : undefined,
+          transferDate: waste.transferDate
+            ? new Date(waste.transferDate)
+            : undefined,
           status: waste.status as "READY" | "TRANSFERRED",
         }));
         set({ wastes: transformedWastes, loading: false });
       } else {
-        set({ error: response.error || 'Failed to load wastes', loading: false });
+        set({
+          error: response.error || "Failed to load wastes",
+          loading: false,
+        });
       }
     } catch (error) {
-      set({ error: 'Network error occurred', loading: false });
+      set({ error: "Network error occurred", loading: false });
     }
   },
 
@@ -64,20 +69,20 @@ export const useOlivesDashStore = create<OlivesDashStore>((set, get) => ({
           ...newWaste,
           id: `waste-${Date.now()}`,
         };
-        
+
         set((state) => ({
           wastes: [...state.wastes, newWasteWithId],
           showForm: false,
           loading: false,
         }));
-        
+
         // Reload from backend to get updated data
         get().loadWastes();
       } else {
-        set({ error: response.error || 'Failed to add waste', loading: false });
+        set({ error: response.error || "Failed to add waste", loading: false });
       }
     } catch (error) {
-      set({ error: 'Network error occurred', loading: false });
+      set({ error: "Network error occurred", loading: false });
     }
   },
 

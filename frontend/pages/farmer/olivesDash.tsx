@@ -28,26 +28,23 @@ export default function FarmerPage() {
           >
             {showForm ? "Annuler" : "Ajouter des olives"}
           </button>
-        </div>
-
+        </div>{" "}
         {showForm && (
           <div className="bg-white p-6 rounded-lg shadow-md mb-8">
-            <h2 className="text-xl font-semibold mb-4 text-gray-700">
+            <h2 className="text-xl font-semibold mb-4 text-black">
               Déclarer des nouveaux olives
             </h2>
             <FarmerForm onSubmit={addWaste} />
           </div>
         )}
-
         <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
-          <h2 className="text-xl font-semibold p-4 bg-green-100 text-gray-700">
+          <h2 className="text-xl font-semibold p-4 bg-green-100 text-black">
             Olives récoltées
           </h2>
-
           {wastes.length === 0 ? (
-            <p className="p-4 text-gray-500">Aucune olive enregistrée</p>
+            <p className="p-4 text-black">Aucune olive enregistrée</p>
           ) : (
-            <table className="w-full text-sm text-gray-700">
+            <table className="w-full text-sm text-black">
               <thead className="bg-green-600 text-white text-left">
                 <tr>
                   <th className="p-4 font-semibold">ID</th>
@@ -63,9 +60,7 @@ export default function FarmerPage() {
                     key={waste.id}
                     className="hover:bg-green-50 transition-colors"
                   >
-                    <td className="p-4 capitalize">
-                      {waste.id}
-                    </td>
+                    <td className="p-4 capitalize">{waste.id}</td>
                     <td className="p-4">{waste.quantity}</td>
                     <td className="p-4">
                       {waste.harvestDate.toLocaleDateString()}
@@ -92,7 +87,7 @@ export default function FarmerPage() {
                           Transférer
                         </button>
                       ) : (
-                        <span className="text-gray-500 text-xs">
+                        <span className="text-black text-xs">
                           Transféré le{" "}
                           {waste.transferDate?.toLocaleDateString()}
                         </span>

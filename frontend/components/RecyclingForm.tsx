@@ -41,9 +41,10 @@ export default function RecyclingForm({
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
+          {" "}
           <label
             htmlFor="processType"
-            className="block text-base font-semibold text-gray-600"
+            className="block text-base font-semibold text-black"
           >
             Type de processus
           </label>
@@ -52,7 +53,7 @@ export default function RecyclingForm({
             name="processType"
             value={formData.processType}
             onChange={handleChange}
-            className="w-full text-base text-gray-600 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+            className="w-full text-base text-black border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
             required
           >
             <option value="COMPOST">Compostage</option>
@@ -63,9 +64,10 @@ export default function RecyclingForm({
         </div>
 
         <div className="space-y-2">
+          {" "}
           <label
             htmlFor="startDate"
-            className="block text-base font-semibold text-gray-600"
+            className="block text-base font-semibold text-black"
           >
             Date de début
           </label>
@@ -75,16 +77,17 @@ export default function RecyclingForm({
             name="startDate"
             value={formData.startDate.toISOString().split("T")[0]}
             onChange={handleChange}
-            className="w-full text-base text-gray-600 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+            className="w-full text-base text-black border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
             required
           />
         </div>
       </div>
 
       <div className="space-y-2">
+        {" "}
         <label
           htmlFor="notes"
-          className="block text-base font-semibold text-gray-600"
+          className="block text-base font-semibold text-black"
         >
           Notes (optionnel)
         </label>
@@ -94,7 +97,7 @@ export default function RecyclingForm({
           value={formData.notes}
           onChange={handleChange}
           rows={3}
-          className="w-full text-base text-gray-600 border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
+          className="w-full text-base text-black border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
         />
       </div>
 
@@ -102,7 +105,7 @@ export default function RecyclingForm({
         <button
           type="button"
           onClick={onCancel}
-          className="bg-gray-300 text-gray-600 py-2 px-4 rounded hover:bg-gray-400 transition-colors"
+          className="bg-gray-300 text-black py-2 px-4 rounded hover:bg-gray-400 transition-colors"
         >
           Annuler
         </button>

@@ -1,11 +1,13 @@
 # Green Olive Chain - Frontend-Backend Connection Documentation
 
 ## 🎯 Overview
+
 Successfully connected the React/Next.js frontend with the Express.js backend for the Green Olive Chain project. The system includes blockchain integration with Hyperledger Fabric and provides a complete waste management solution for the olive industry with full traceability from farm to recycling.
 
 ## ✅ Completed Features
 
 ### 1. Backend Infrastructure
+
 - **Express.js server** running on `http://localhost:5000`
 - **CORS configuration** allowing frontend connection
 - **Environment variable management** with `.env` file
@@ -14,7 +16,8 @@ Successfully connected the React/Next.js frontend with the Express.js backend fo
 - **Health check endpoint** at `/health`
 - **All routes enabled** - waste, extraction, and recycling
 
-### 2. Frontend Infrastructure  
+### 2. Frontend Infrastructure
+
 - **Next.js/React application** running on `http://localhost:3000`
 - **TypeScript support** with proper type definitions
 - **Zustand state management** for reactive data handling
@@ -25,30 +28,36 @@ Successfully connected the React/Next.js frontend with the Express.js backend fo
 ### 3. API Endpoints (All Working ✅)
 
 #### Waste Management
+
 - `POST /api/waste/add` - Add new waste data
 - `GET /api/waste/list` - Get list of all wastes
 
-#### Extraction Management  
+#### Extraction Management
+
 - `POST /api/extraction/add` - Add extraction data
 - `GET /api/extraction/list` - Get list of extractions
 
 #### Recycling Management
-- `POST /api/recycling/add` - Add recycling data  
+
+- `POST /api/recycling/add` - Add recycling data
 - `GET /api/recycling/list` - Get list of recyclings
 
 #### System Health
+
 - `GET /health` - Backend health check
 - `GET /` - API information and available endpoints
 
 ### 4. Frontend Components & Pages
 
 #### Multi-Role Dashboard System
+
 - **Farmer Dashboard** (`/farmer/wasteDash`) - Waste management for farmers
 - **Processor Dashboard** (`/processor/extractionDash`) - Extraction tracking
 - **Recycler Dashboard** (`/recycler/recyclingDash`) - Recycling management
 - **Main Page** (`/`) - Role selection and system overview
 
 #### Components
+
 - **WasteDashForm** - Form for farmers to add waste data
 - **ExtractionDash** - Complete extraction management interface
 - **RecyclingDash** - Complete recycling management interface
@@ -58,6 +67,7 @@ Successfully connected the React/Next.js frontend with the Express.js backend fo
 ## 🔧 Technical Implementation
 
 ### Backend Architecture
+
 ```
 backend/
 ├── server.js                    # Main server with all routes enabled
@@ -78,6 +88,7 @@ backend/
 ```
 
 ### Frontend Architecture
+
 ```
 frontend/
 ├── pages/
@@ -100,27 +111,33 @@ frontend/
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js 16+ installed
 - npm or yarn package manager
 - Git for version control
 
 ### 1. Start Backend Server
+
 ```bash
 cd c:\MyStuff\Projects\greenolivechain\backend
 npm install
 npm start
 ```
+
 Server starts on: `http://localhost:5000`
 
 ### 2. Start Frontend Development Server
+
 ```bash
 cd c:\MyStuff\Projects\greenolivechain\frontend
 npm install
 npm run dev
 ```
+
 Application available at: `http://localhost:3000`
 
 ### 3. Access the Application
+
 - **Main Page**: `http://localhost:3000` - Role selection
 - **Farmer Dashboard**: `http://localhost:3000/farmer/wasteDash`
 - **Processor Dashboard**: `http://localhost:3000/processor/extractionDash`
@@ -129,6 +146,7 @@ Application available at: `http://localhost:3000`
 ## 🧪 Testing
 
 ### API Testing Script
+
 A comprehensive PowerShell script is available: `test-all-endpoints.ps1`
 
 ```powershell
@@ -139,18 +157,21 @@ cd c:\MyStuff\Projects\greenolivechain
 ### Manual Testing Examples
 
 #### Test Waste Addition
+
 ```powershell
 $body = '{"wasteData":{"type":"Feuilles test","quantity":20,"harvestDate":"2025-06-09T18:10:00.000Z","status":"COLLECTED"}}'
 Invoke-WebRequest -Uri "http://localhost:5000/api/waste/add" -Method POST -Body $body -ContentType "application/json"
 ```
 
 #### Test Extraction Addition
+
 ```powershell
 $body = '{"extractionData":{"wasteId":1,"extractionDate":"2025-06-09T18:10:00.000Z","productType":"Huile test","quantity":10,"quality":"Premium","status":"PROCESSED"}}'
 Invoke-WebRequest -Uri "http://localhost:5000/api/extraction/add" -Method POST -Body $body -ContentType "application/json"
 ```
 
 #### Test Recycling Addition
+
 ```powershell
 $body = '{"recyclingData":{"wasteId":2,"recyclingDate":"2025-06-09T18:10:00.000Z","recycledProduct":"Compost test","quantity":25,"method":"Compostage","status":"COMPLETED"}}'
 Invoke-WebRequest -Uri "http://localhost:5000/api/recycling/add" -Method POST -Body $body -ContentType "application/json"
@@ -159,6 +180,7 @@ Invoke-WebRequest -Uri "http://localhost:5000/api/recycling/add" -Method POST -B
 ## 🔗 Connection Details
 
 ### API Communication
+
 - **Base URL**: `http://localhost:5000`
 - **Content-Type**: `application/json`
 - **CORS**: Enabled for `http://localhost:3000`
@@ -166,6 +188,7 @@ Invoke-WebRequest -Uri "http://localhost:5000/api/recycling/add" -Method POST -B
 - **Loading States**: Implemented on all async operations
 
 ### Data Flow
+
 1. **Frontend** → API Service → **Backend** → Blockchain (if available)
 2. **Error Handling** at each layer with user-friendly messages
 3. **State Management** with automatic UI updates
@@ -174,6 +197,7 @@ Invoke-WebRequest -Uri "http://localhost:5000/api/recycling/add" -Method POST -B
 ## 🌟 Key Features Implemented
 
 ### ✅ Core Functionality
+
 - [x] Complete waste tracking for farmers
 - [x] Extraction process management for processors
 - [x] Recycling workflow for recycling organizations
@@ -183,6 +207,7 @@ Invoke-WebRequest -Uri "http://localhost:5000/api/recycling/add" -Method POST -B
 - [x] Loading indicators and user feedback
 
 ### ✅ Technical Features
+
 - [x] TypeScript integration for type safety
 - [x] Responsive design for all screen sizes
 - [x] Modern UI with Tailwind CSS styling
@@ -192,6 +217,7 @@ Invoke-WebRequest -Uri "http://localhost:5000/api/recycling/add" -Method POST -B
 - [x] Git integration with proper .gitignore
 
 ### ✅ Blockchain Integration
+
 - [x] Hyperledger Fabric client setup
 - [x] Wallet initialization and management
 - [x] Blockchain fallback for development
@@ -200,6 +226,7 @@ Invoke-WebRequest -Uri "http://localhost:5000/api/recycling/add" -Method POST -B
 ## 🔮 Next Steps
 
 ### Priority Enhancements
+
 1. **Authentication System** - User login/registration
 2. **Real-time Updates** - WebSocket or polling for live data
 3. **Data Visualization** - Charts and analytics dashboard
@@ -210,6 +237,7 @@ Invoke-WebRequest -Uri "http://localhost:5000/api/recycling/add" -Method POST -B
 8. **Notifications** - Email/SMS alerts for stakeholders
 
 ### Development Workflow
+
 1. Both servers must be running for full functionality
 2. Backend changes require server restart
 3. Frontend changes are hot-reloaded automatically
@@ -219,6 +247,7 @@ Invoke-WebRequest -Uri "http://localhost:5000/api/recycling/add" -Method POST -B
 ## 📝 Notes
 
 ### Current Status: ✅ FULLY FUNCTIONAL
+
 - All three main workflows (waste, extraction, recycling) are working
 - Frontend-backend communication is stable
 - All API endpoints tested and verified
@@ -226,6 +255,7 @@ Invoke-WebRequest -Uri "http://localhost:5000/api/recycling/add" -Method POST -B
 - Ready for production deployment with proper environment setup
 
 ### Development Environment
+
 - **Backend**: Node.js/Express.js with ES modules
 - **Frontend**: Next.js/React with TypeScript
 - **Styling**: Tailwind CSS for modern, responsive design

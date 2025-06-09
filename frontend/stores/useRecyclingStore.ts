@@ -17,47 +17,8 @@ interface RecyclingState {
 }
 
 const useRecyclingStore = create<RecyclingState>((set) => ({
-  wasteRecords: [
-    {
-      id: "record-1",
-      type: WasteType.BRANCHES,
-      quantity: 50,
-      sourceOrganization: "Ferme des Oliviers",
-      destinationOrganization: "ÉcoRecycle",
-      createdAt: new Date(Date.now() - 86400000), // Yesterday
-      status: "TRANSFERRED",
-    },
-    {
-      id: "record-2",
-      type: WasteType.OLIVE_PASTE,
-      quantity: 120,
-      sourceOrganization: "PressOlive",
-      destinationOrganization: "ÉcoRecycle",
-      createdAt: new Date(),
-      status: "PENDING",
-    },
-    {
-      id: "record-3",
-      type: WasteType.PITS,
-      quantity: 80,
-      sourceOrganization: "PressOlive",
-      destinationOrganization: "ÉcoRecycle",
-      createdAt: new Date(Date.now() - 172800000), // 2 days ago
-      status: "PROCESSED",
-    },
-  ],
-  processes: [
-    {
-      id: "process-1",
-      wasteId: "record-3",
-      processType: "FUEL",
-      startDate: new Date(Date.now() - 86400000), // Yesterday
-      endDate: new Date(),
-      outputQuantity: 70,
-      status: "COMPLETED",
-      notes: "Conversion en combustible pour les usines",
-    },
-  ],
+  wasteRecords: [],
+  processes: [],
   showForm: false,
   selectedWaste: null,
   handleReceiveWaste: (id) =>

@@ -10,33 +10,7 @@ interface ExtractionState {
 }
 
 const useExtractionStore = create<ExtractionState>((set) => ({
-  wastes: [
-    {
-      id: "extr-waste-1",
-      type: WasteType.OLIVE_PASTE,
-      quantity: 120,
-      sourceOlives: "batch-456",
-      productionDate: new Date(),
-      status: "READY",
-    },
-    {
-      id: "extr-waste-2",
-      type: WasteType.RESIDUAL_WATER,
-      quantity: 200,
-      sourceOlives: "batch-456",
-      productionDate: new Date(),
-      status: "READY",
-    },
-    {
-      id: "extr-waste-3",
-      type: WasteType.PITS,
-      quantity: 80,
-      sourceOlives: "batch-455",
-      productionDate: new Date(Date.now() - 172800000), // 2 days ago
-      transferDate: new Date(Date.now() - 86400000), // Yesterday
-      status: "TRANSFERRED",
-    },
-  ],
+  wastes: [],
   showForm: false,
   handleAddWaste: (newWaste) =>
     set((state) => ({

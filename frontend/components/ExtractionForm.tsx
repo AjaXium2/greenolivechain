@@ -32,9 +32,10 @@ export default function ExtractionForm({ onSubmit }: ExtractionFormProps) {
     <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
+          {" "}
           <label
             htmlFor="type"
-            className="block text-base font-semibold text-gray-700"
+            className="block text-base font-semibold text-black"
           >
             Type de déchet
           </label>
@@ -43,7 +44,7 @@ export default function ExtractionForm({ onSubmit }: ExtractionFormProps) {
             name="type"
             value={formData.type}
             onChange={handleChange}
-            className="w-full text-base text-gray-700 border-gray-300 rounded-md shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-500 focus:ring-opacity-50"
+            className="w-full text-base text-black border-gray-300 rounded-md shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-500 focus:ring-opacity-50"
             required
           >
             <option value={WasteType.OLIVE_PASTE}>Pâte d'olive</option>
@@ -52,12 +53,11 @@ export default function ExtractionForm({ onSubmit }: ExtractionFormProps) {
             <option value={WasteType.LEAVES}>Feuilles</option>
             <option value={WasteType.OTHER}>Autre</option>
           </select>
-        </div>
-
+        </div>{" "}
         <div className="space-y-2">
           <label
             htmlFor="quantity"
-            className="block text-base font-semibold text-gray-700"
+            className="block text-base font-semibold text-black"
           >
             Quantité (kg)
           </label>
@@ -69,15 +69,15 @@ export default function ExtractionForm({ onSubmit }: ExtractionFormProps) {
             onChange={handleChange}
             min="0"
             step="0.1"
-            className="w-full text-base text-gray-900 border-gray-300 rounded-md shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-500 focus:ring-opacity-50"
+            className="w-full text-base text-black border-gray-300 rounded-md shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-500 focus:ring-opacity-50"
             required
           />
         </div>
-
         <div className="space-y-2">
+          {" "}
           <label
             htmlFor="sourceOlives"
-            className="block text-base font-semibold text-gray-900"
+            className="block text-base font-semibold text-black"
           >
             Source des olives (ID du lot)
           </label>
@@ -87,15 +87,15 @@ export default function ExtractionForm({ onSubmit }: ExtractionFormProps) {
             name="sourceOlives"
             value={formData.sourceOlives}
             onChange={handleChange}
-            className="w-full text-base text-gray-900 border-gray-300 rounded-md shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-500 focus:ring-opacity-50"
+            className="w-full text-base text-black border-gray-300 rounded-md shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-500 focus:ring-opacity-50"
             required
           />
         </div>
-
         <div className="space-y-2">
+          {" "}
           <label
             htmlFor="productionDate"
-            className="block text-base font-semibold text-gray-700"
+            className="block text-base font-semibold text-black"
           >
             Date de production
           </label>
@@ -105,7 +105,7 @@ export default function ExtractionForm({ onSubmit }: ExtractionFormProps) {
             name="productionDate"
             value={formData.productionDate.toISOString().split("T")[0]}
             onChange={handleChange}
-            className="w-full text-base text-gray-900 border-gray-300 rounded-md shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-500 focus:ring-opacity-50"
+            className="w-full text-base text-black border-gray-300 rounded-md shadow-sm focus:border-yellow-500 focus:ring focus:ring-yellow-500 focus:ring-opacity-50"
             required
           />
         </div>

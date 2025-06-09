@@ -51,9 +51,10 @@ function OrganizationCard({
       href={href}
       className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col items-center text-center border border-green-200"
     >
+      {" "}
       <div className="text-5xl mb-4">{icon}</div>
       <h2 className="text-2xl font-semibold text-green-700 mb-2">{title}</h2>
-      <p className="text-gray-600">{description}</p>
+      <p className="text-black">{description}</p>
       <div className="mt-4 bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition-colors">
         Accéder
       </div>

@@ -32,9 +32,10 @@ export default function OlivesDash({ onSubmit }: OlivesDashProps) {
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-2">
+          {" "}
           <label
             htmlFor="type"
-            className="block text-sm font-medium text-gray-500"
+            className="block text-sm font-medium text-black"
           >
             Type de déchet
           </label>
@@ -43,17 +44,16 @@ export default function OlivesDash({ onSubmit }: OlivesDashProps) {
             name="type"
             value={formData.type}
             onChange={handleChange}
-            className="w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50 text-gray-700"
+            className="w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50 text-black"
             required
           >
             <option>Olives</option>
           </select>
-        </div>
-
+        </div>{" "}
         <div className="space-y-2">
           <label
             htmlFor="quantity"
-            className="block text-sm font-medium text-gray-500"
+            className="block text-sm font-medium text-black"
           >
             Quantité (kg)
           </label>
@@ -65,15 +65,15 @@ export default function OlivesDash({ onSubmit }: OlivesDashProps) {
             onChange={handleChange}
             min="0"
             step="0.1"
-            className="w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50 text-gray-700"
+            className="w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50 text-black"
             required
           />
         </div>
-
         <div className="space-y-2">
+          {" "}
           <label
             htmlFor="harvestDate"
-            className="block text-sm font-medium text-gray-500"
+            className="block text-sm font-medium text-black"
           >
             Date de récolte
           </label>
@@ -83,7 +83,7 @@ export default function OlivesDash({ onSubmit }: OlivesDashProps) {
             name="harvestDate"
             value={formData.harvestDate.toISOString().split("T")[0]}
             onChange={handleChange}
-            className="w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50 text-gray-700"
+            className="w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50 text-black"
             required
           />
         </div>
