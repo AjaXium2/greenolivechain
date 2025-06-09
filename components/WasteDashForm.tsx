@@ -9,12 +9,15 @@ interface OlivesDashProps {
   }) => void;
 }
 
-export default function OlivesDash({ onSubmit }: OlivesDashProps) {
+
+export default function WasteDashForm({ onSubmit }: OlivesDashProps) {
+   const { formData, updateFormField, resetForm } = useOlivesDashFormStore();
   const [type, setType] = useState("BRANCHES");
   const [quantity, setQuantity] = useState(0);
   const [harvestDate, setHarvestDate] = useState(
     new Date().toISOString().split("T")[0]
   );
+
 
   const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
