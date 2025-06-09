@@ -1,68 +1,46 @@
 import { useState } from "react";
+import { WasteType } from "../types/waste";
 
-interface OlivesDashProps {
+interface WasteDashFormProps {
   onSubmit: (waste: {
-    type: string;
+    type: WasteType;
     quantity: number;
-    harvestDate: string;
-    status: string;
+    harvestDate: Date;
+    status: "READY" | "TRANSFERRED";
   }) => void;
+  loading?: boolean;
 }
 
 
-export default function WasteDashForm({ onSubmit }: OlivesDashProps) {
-   const { formData, updateFormField, resetForm } = useOlivesDashFormStore();
-  const [type, setType] = useState("BRANCHES");
+export default function WasteDashForm({ onSubmit, loading = false }: WasteDashFormProps) {
+  const [type, setType] = useState<WasteType>(WasteType.BRANCHES);
   const [quantity, setQuantity] = useState(0);
   const [harvestDate, setHarvestDate] = useState(
     new Date().toISOString().split("T")[0]
   );
 
-
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  const wasteData = {
-    type,
-    quantity,
-    harvestDate,
-    status: "READY",
-  };
+    const wasteData = {
+      type,
+      quantity,
+      harvestDate: new Date(harvestDate),
+      status: "READY" as const,
+    };
 
-  try {
-    console.log("Envoi des données:", wasteData);
-    
-    const response = await fetch("http://localhost:5000/api/waste/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(wasteData),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(
-        errorData.message || `Erreur HTTP: ${response.status}`
-      );
+    try {
+      // Call the onSubmit prop which now handles API calls through the store
+      onSubmit(wasteData);
+      
+      // Reset form
+      setType(WasteType.BRANCHES);
+      setQuantity(0);
+      setHarvestDate(new Date().toISOString().split("T")[0]);
+    } catch (error) {
+      console.error("Form submission error:", error);
     }
-
-    const result = await response.json();
-    console.log("Succès:", result);
-
-    // Réinitialisation du formulaire
-    setType("BRANCHES");
-    setQuantity(0);
-    setHarvestDate(new Date().toISOString().split("T")[0]);
-    
-    // Appel de la prop onSubmit
-    onSubmit(wasteData);
-
-  } catch (error) {
-    console.error("Échec de la requête:", error);
-    alert(`Erreur: ${error}`);
-  }
-};
+  };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -75,13 +53,15 @@ export default function WasteDashForm({ onSubmit }: OlivesDashProps) {
             id="type"
             name="type"
             value={type}
-            onChange={(e) => setType(e.target.value)}
+            onChange={(e) => setType(e.target.value as WasteType)}
             className="w-full border-gray-300 rounded-md shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50 text-gray-700"
             required
-          >
-            <option value="BRANCHES">Branches</option>
-            <option value="LEAVES">Feuilles</option>
-            <option value="OTHER">Autre</option>
+          >            <option value={WasteType.BRANCHES}>Branches</option>
+            <option value={WasteType.LEAVES}>Feuilles</option>
+            <option value={WasteType.OLIVE_PASTE}>Pâte d'olive</option>
+            <option value={WasteType.RESIDUAL_WATER}>Eau résiduelle</option>
+            <option value={WasteType.PITS}>Noyaux</option>
+            <option value={WasteType.OTHER}>Autre</option>
           </select>
         </div>
 
@@ -118,12 +98,12 @@ export default function WasteDashForm({ onSubmit }: OlivesDashProps) {
         </div>
       </div>
 
-      <div className="flex justify-end">
-        <button
+      <div className="flex justify-end">        <button
           type="submit"
-          className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition-colors"
+          disabled={loading}
+          className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Enregistrer
+          {loading ? "Enregistrement..." : "Enregistrer"}
         </button>
       </div>
     </form>

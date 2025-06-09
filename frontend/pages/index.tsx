@@ -3,32 +3,74 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-green-100 to-green-200 p-6">
-      <h1 className="text-4xl font-bold text-green-800 mb-8">
-        Gestion des Déchets d'Olives
-      </h1>
+      <div className="text-center mb-12">
+        <h1 className="text-5xl font-bold text-green-800 mb-4">
+          🫒 Green Olive Chain
+        </h1>
+        <p className="text-xl text-green-600 mb-2">
+          Système de Blockchain pour la Gestion des Déchets d'Olives
+        </p>
+        <p className="text-gray-600">
+          Traçabilité complète de la production agricole au recyclage
+        </p>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
-        <OrganizationCard
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">        <OrganizationCard
           title="Agriculteur"
-          description="Gestion des déchets agricoles issus de la culture des olives"
-          href="./farmer/productPicking"
+          description="Gestion et traçabilité des déchets agricoles issus de la culture des olives"
+          href="./farmer/wasteDash"
           icon="🌱"
         />
 
         <OrganizationCard
           title="Extraction d'Huile"
-          description="Suivi des déchets générés lors de l'extraction de l'huile d'olive"
-          href="./extraction"
+          description="Suivi des déchets générés lors de l'extraction de l'huile d'olive et production"
+          href="./processor/extractionDash"
           icon="🏭"
         />
 
         <OrganizationCard
           title="Organisation de Recyclage"
-          description="Transformation des déchets en ressources valorisables"
-          href="./recycling"
+          description="Transformation des déchets en ressources valorisables et durables"
+          href="./recycler/recyclingDash"
           icon="♻️"
         />
       </div>
+
+      {/* Additional Information */}
+      <div className="mt-12 bg-white rounded-lg shadow-md p-6 max-w-4xl">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4 text-center">
+          🔗 Traçabilité Blockchain
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+          <div className="flex flex-col items-center">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-3">
+              <span className="text-2xl">📊</span>
+            </div>
+            <h3 className="font-semibold text-gray-800 mb-2">Transparence</h3>
+            <p className="text-sm text-gray-600">
+              Suivi en temps réel de tous les déchets depuis la production
+            </p>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-3">
+              <span className="text-2xl">🔒</span>
+            </div>
+            <h3 className="font-semibold text-gray-800 mb-2">Sécurité</h3>
+            <p className="text-sm text-gray-600">
+              Données immutables et vérifiables sur la blockchain
+            </p>
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-3">
+              <span className="text-2xl">🌍</span>
+            </div>
+            <h3 className="font-semibold text-gray-800 mb-2">Durabilité</h3>
+            <p className="text-sm text-gray-600">
+              Optimisation du recyclage et réduction des déchets
+            </p>
+          </div>
+        </div>      </div>
     </main>
   );
 }

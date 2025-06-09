@@ -1,13 +1,25 @@
 import Link from "next/link";
-import { useOlivesDashStore } from "../../stores/useOlivesStore";
-import FarmerForm from "../../components/OlivesDashForm";
-import WasteDashForm from "@/components/WasteDashForm";
-
+import { useOlivesDashStore } from "../../stores/useWasteStore";
+import WasteDashForm from "../../components/WasteDashForm";
+import { useEffect } from "react";
 
 export default function FarmerPage() {
-  const { wastes, showForm, toggleForm, addWaste, transferWaste } =
-    useOlivesDashStore();
+  const { 
+    wastes, 
+    showForm, 
+    loading, 
+    error, 
+    toggleForm, 
+    addWaste, 
+    transferWaste, 
+    loadWastes, 
+    clearError 
+  } = useOlivesDashStore();
 
+  // Load wastes when component mounts
+  useEffect(() => {
+    loadWastes();
+  }, [loadWastes]);
   return (
     <main className="min-h-screen bg-green-50 p-6">
       <div className="max-w-6xl mx-auto">
@@ -26,11 +38,34 @@ export default function FarmerPage() {
 
           <button
             onClick={toggleForm}
-            className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition-colors"
+            disabled={loading}
+            className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition-colors disabled:opacity-50"
           >
             {showForm ? "Annuler" : "Ajouter des déchets"}
           </button>
         </div>
+
+        {/* Error display */}
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            <div className="flex justify-between items-center">
+              <span>{error}</span>
+              <button
+                onClick={clearError}
+                className="text-red-700 hover:text-red-900"
+              >
+                ×
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Loading indicator */}
+        {loading && (
+          <div className="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded mb-4">
+            Chargement en cours...
+          </div>
+        )}
 
         {showForm && (
           <div className="bg-white p-6 rounded-lg shadow-md mb-8">
@@ -38,7 +73,7 @@ export default function FarmerPage() {
               Déclarer des nouveaux déchets
             </h2>
 
-            <WasteDashForm onSubmit={addWaste} />
+            <WasteDashForm onSubmit={addWaste} loading={loading} />
 
           </div>
         )}
