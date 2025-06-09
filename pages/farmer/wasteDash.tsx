@@ -3,6 +3,7 @@ import { useOlivesDashStore } from "../../stores/useOlivesStore";
 import FarmerForm from "../../components/OlivesDashForm";
 import WasteDashForm from "@/components/WasteDashForm";
 
+
 export default function FarmerPage() {
   const { wastes, showForm, toggleForm, addWaste, transferWaste } =
     useOlivesDashStore();
@@ -36,7 +37,9 @@ export default function FarmerPage() {
             <h2 className="text-xl font-semibold mb-4 text-gray-700">
               Déclarer des nouveaux déchets
             </h2>
+
             <WasteDashForm onSubmit={addWaste} />
+
           </div>
         )}
 
@@ -73,11 +76,10 @@ export default function FarmerPage() {
                     </td>
                     <td className="p-4">
                       <span
-                        className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
-                          waste.status === "READY"
+                        className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${waste.status === "READY"
                             ? "bg-yellow-100 text-yellow-800"
                             : "bg-green-100 text-green-800"
-                        }`}
+                          }`}
                       >
                         {waste.status === "READY"
                           ? "Prêt à transférer"
